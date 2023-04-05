@@ -5,4 +5,12 @@
     <string name="edit_id_hint">아이디를 입력하세요.</string>
     <string name="edit_pw_hint">비밀번호를 입력하세요.</string>
     <string name="login">LOGIN</string>
+    <string name="iv_go_android_description">고 솝트 안드로이드</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="id">ID</string>
+    <string name="nickname_eng">NICKNAME</string>
+    <string name="edit_nickname_hint">별명을 입력하세요</string>
+    <string name="tmi_kor">자기소개</string>
+    <string name="edit_tmi_hint">프로필 소개를 입력해주세요</string>
+    <string name="sign_up_done">회원 가입 완료</string>
 </resources>
