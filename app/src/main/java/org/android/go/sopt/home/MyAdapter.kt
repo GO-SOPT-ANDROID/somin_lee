@@ -1,43 +1,35 @@
 package org.android.go.sopt.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ItemGodokSomBinding
+import org.android.go.sopt.model.SomData
 
-class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
+/**데이터 리스트(list<som>)를 뷰 리스트로 변환하는 클래스*/
+class MyAdapter(requireContext: Context) : RecyclerView.Adapter<MyViewHolder>(){
 
-    private val itemList: List<Som> =
-        listOf(Som(R.drawable.ic_launcher_foreground, "som1", "date1"), Som(R.drawable.ic_launcher_foreground, "som2", "date2"))
+    private var itemList: List<SomData> = emptyList()
 
     //아래에 세가지 필수 매서드 자동 생성
+    /**ViewHolder에 들어갈 View를 만들어주는 함수 (전체 리사이클러 뷰에 대한 내용)*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding : ItemGodokSomBinding = ItemGodokSomBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return itemList.size
-    }
-
+    /**각각의 ViewHolder에 데이터를 매칭하는 함수(리사이클러 뷰의 아이템 각각에 대한 내용)*/
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.onBind(itemList[position])
     }
-}
 
-class MyViewHolder(private val binding : ItemGodokSomBinding):ViewHolder(binding.root) {
-    fun onBind(item:Som){
-        binding.tvItemDate.text = item.som
-        binding.tvItemSomName.text = item.date
+
+    /**데이터 리스트의 아이템 갯수를 반환하는 함수*/
+    override fun getItemCount() = itemList.size
+
+    fun setSomList(somList:List<SomData>){
+        this.itemList = somList.toList()
+        notifyDataSetChanged()
     }
 }
-
-data class Som(
-    // 밑에 이상한 녀석이 있죠? 이는 안드로이드의 Meta Annotation입니다.
-    @DrawableRes val pic: Int, // 서버에서 이미지 url이 내려오는 경우 String으로 받아야합니다. (Json 내부에는 URL 타입은 들어갈 수 없음)
-    val som: String,
-    val date: String
-)

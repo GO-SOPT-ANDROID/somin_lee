@@ -5,14 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.viewModels
 import org.android.go.sopt.databinding.FragmentHomeBinding
+import org.android.go.sopt.model.HomeViewModel
 
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
-    private val binding: FragmentHomeBinding
-        get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" } //에러 메시지
+    private val binding get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" } //에러 메시지
+
+    private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView( // 제일 처음 뷰가 생성될 때 실행
         inflater: LayoutInflater,
@@ -22,12 +24,13 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // 뷰가 생성된 후에 실행
         super.onViewCreated(view, savedInstanceState)
         // 대부분의 로직은 여기에 구현합니다!!
-        binding.rvHome.adapter = MyAdapter()
-        binding.rvHome.layoutManager = LinearLayoutManager(context)
+
+        val adapter = MyAdapter(requireContext())
+        binding.rvHome.adapter = adapter
+        adapter.setSomList(viewModel.mockSomList)
     }
 
     override fun onDestroyView() {

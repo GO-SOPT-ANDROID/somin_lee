@@ -16,5 +16,6 @@
     <string name="home">홈</string>
     <string name="search">검색</string>
     <string name="gallery">갤러리</string>
-    <string name="tv_fragment_test_message">search fragment\n등장!</string>
+    <string name="tv_search_fragment_test">search fragment\n등장!</string>
+    <string name="tv_gallery_fragment_test">gallery fragment \n등장!</string>
 </resources>

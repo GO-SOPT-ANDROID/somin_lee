@@ -9,10 +9,9 @@ import org.android.go.sopt.home.HomeFragment
 import org.android.go.sopt.home.SearchFragment
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
-    val currentFragment = supportFragmentManager.findFragmentById(R.id.fcv_main)
-
+    val currentFragment = supportFragmentManager.findFragmentById(R.id.fcvMain)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,36 +23,38 @@ class MainActivity : AppCompatActivity() {
 
         if (currentFragment == null) { // 비어있으면
             supportFragmentManager.beginTransaction()
-                .add(R.id.fcv_main, hf)
-                .remove(hf)
-                .add(R.id.fcv_main, sf)
-                .replace(R.id.fcv_main, gf)
+                .add(binding.fcvMain.id, hf)
                 .commit()
         }
 
-//        binding.bnvMain.setOnItemSelectedListener { item ->
-//            changeFragment(
-//                when (item.itemId) {
-//                    R.id.menu_home -> {
-//                        HomeFragment()
-//                        return@setOnItemSelectedListener true
-//                    }
-//                    R.id.menu_search -> {
-//                        SearchFragment()
-//                        return@setOnItemSelectedListener true
-//                    }
-//                    R.id.menu_gallery -> {
-//                        GalleryFragment()
-//                        return@setOnItemSelectedListener true
-//                    }
-//                    false
-//                }
-//            )
-//        }
+        binding.homeCustomBottom.setOnItemSelectedListener { item ->
+            val fragment = when (item.itemId) {
+                R.id.menu_home -> {
+                    hf
+                }
+                R.id.menu_search -> {
+                    sf
+                }
+                R.id.menu_gallery -> {
+                    gf
+                }
+                else -> { // 이렇게 하면 좋지 않음..
+                    null
+                }
+            }
+            if (fragment != null) {
+                changeFragment(fragment)
+                true
+            } else {
+                false
+            } // 람다는 맨 마지막 구문을 return으로 본다!
+        }
     }
-    fun changeFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_view_home, fragment)
+
+    private fun changeFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(binding.fcvMain.id, fragment)
             .commit()
     }
 }

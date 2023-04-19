@@ -10,12 +10,12 @@
         android:id="@+id/ivGoAndroid"
         android:layout_width="100dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1"
         android:layout_marginTop="150dp"
         android:contentDescription="@string/iv_go_android_description"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sopt_android" />
 
     <TextView
@@ -29,18 +29,18 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivGoAndroid"/>
+        app:layout_constraintTop_toBottomOf="@id/ivGoAndroid" />
 
     <TextView
         android:id="@+id/resultTmi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
         android:text="@string/intro"
         android:textSize="20sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/resultNickname"
-        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/resultNickname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
+        android:id="@+id/ivSom"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:background="@drawable/sopt_android"
@@ -20,7 +21,7 @@
         android:id="@+id/tv_item_som_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"
         tools:text="이소민"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:textSize="20sp"
+        android:textSize="15sp"
         tools:text="날짜"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_item_som_name"/>
