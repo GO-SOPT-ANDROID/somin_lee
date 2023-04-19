@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".login.SignUpActivity">
 
     <TextView
         android:id="@+id/tv_sign_up"
@@ -19,7 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
-
 
     <TextView
         android:id="@+id/tv_id"
@@ -83,7 +82,7 @@
         android:id="@+id/tv_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nickname_eng"
+        android:text="@string/nickname"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -109,7 +108,7 @@
         android:id="@+id/tv_tmi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tmi_kor"
+        android:text="@string/intro"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -120,10 +119,10 @@
         />
 
     <EditText
-        android:id="@+id/edit_tmi"
+        android:id="@+id/edit_intro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_tmi_hint"
+        android:hint="@string/edit_intro_hint"
         android:textColorHint="#9C9C9C"
         android:layout_marginTop="10dp"
         android:inputType="text"
@@ -139,7 +138,7 @@
         android:layout_marginTop="40dp"
         android:text="@string/sign_up_done"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/edit_tmi"
+        app:layout_constraintTop_toBottomOf="@id/edit_intro"
         app:layout_constraintStart_toStartOf="@id/tv_sign_up"
         app:layout_constraintEnd_toEndOf="@id/tv_sign_up"
         />

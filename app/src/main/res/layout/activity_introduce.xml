@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroduceActivity">
+    tools:context=".login.IntroduceActivity">
 
     <ImageView
-        android:id="@+id/iv_go_android"
+        android:id="@+id/ivGoAndroid"
         android:layout_width="100dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1"
@@ -19,26 +19,26 @@
         app:srcCompat="@drawable/sopt_android" />
 
     <TextView
-        android:id="@+id/result_nickname"
+        android:id="@+id/resultNickname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="@string/nickname_eng"
+        android:text="@string/nickname"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_go_android"/>
+        app:layout_constraintTop_toBottomOf="@id/ivGoAndroid"/>
 
     <TextView
-        android:id="@+id/result_tmi"
+        android:id="@+id/resultTmi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/tmi_kor"
+        android:text="@string/intro"
         android:textSize="20sp"
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/result_nickname"
+        app:layout_constraintTop_toBottomOf="@id/resultNickname"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
