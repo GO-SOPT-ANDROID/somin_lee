@@ -26,11 +26,11 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // 뷰가 생성된 후에 실행
         super.onViewCreated(view, savedInstanceState)
-        // 대부분의 로직은 여기에 구현합니다!!
+//        val adapter = MyAdapter(viewModel.mockSomList)
+//        binding.rvHome.adapter = adapter
 
-        val adapter = MyAdapter(requireContext())
+        val adapter = MultiViewAdapter(viewModel.mockSomList)
         binding.rvHome.adapter = adapter
-        adapter.setSomList(viewModel.mockSomList)
     }
 
     override fun onDestroyView() {

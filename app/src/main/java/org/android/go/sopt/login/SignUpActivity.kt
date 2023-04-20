@@ -31,7 +31,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
     private fun DoSignUp() = with(binding){
-        val userData = UserData(editId.text.toString(), editPw.text.toString(), editNickname.text.toString(), editIntro.text.toString())
+        val userData = UserData(editId.text.toString(), editPw.text.toString(), editNickname.text.toString(), editIntroduce.text.toString())
         when{
             (userData.id.isEmpty()) || (userData.pw.isEmpty()) || (userData.nickname.isEmpty()) || (userData.tmi.isEmpty())->{
                 binding.root.snackbarShort("공란이 있습니다.")
