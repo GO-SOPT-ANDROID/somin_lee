@@ -1,13 +1,5 @@
 # *[Seminar2]* 과제 Description
 
-## *PR point*
-- 필수과제 : Multi-View Type RecyclerView / ConcatAdapter 두 방식 중 전자를 이용했습니다!
-- 질문 : MultiViewAdapter.kt 에서 주석에 답해주시면 매우 감사하겠습니다.
-- HeaderViewHolder의 onBind에서 SomData Class를 item으로 받는데, 코드가 돌아는 가지만 왠지 이렇게 하는 게 아닌 것 같아요..
-  그래서 String으로 고치려 했는데 자꾸 Crash 남ㅋㅋ
-
----
-
 ## *필수 과제*
 ### 문제 1. RecyclerView의 바깥에 있어 스크롤 되지 않는 헤더를 스크롤 되게 변경
 - [x] 리스트 위에 Title 텍스트를 하나 넣는다
