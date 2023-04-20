@@ -12,8 +12,7 @@ import org.android.go.sopt.model.HomeViewModel
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" } //에러 메시지
-
+    val binding get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" } //에러 메시지
     private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView( // 제일 처음 뷰가 생성될 때 실행
