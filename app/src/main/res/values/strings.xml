@@ -18,4 +18,5 @@
     <string name="gallery">갤러리</string>
     <string name="tv_search_fragment_test">search fragment\n등장!</string>
     <string name="tv_gallery_fragment_test">gallery fragment \n등장!</string>
+    <string name="test_text">test text</string>
 </resources>

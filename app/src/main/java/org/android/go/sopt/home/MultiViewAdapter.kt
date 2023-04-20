@@ -1,7 +1,6 @@
 package org.android.go.sopt.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.databinding.ItemGodokSomBinding
@@ -18,7 +17,6 @@ class MultiViewAdapter(var itemList: List<SomData>) :
 
     /**ViewHolder에 들어갈 View를 만들어주는 함수 (전체 리사이클러 뷰에 대한 내용)*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View?
         return when (viewType) {
             HEADER -> {
                 HeaderViewHolder(
