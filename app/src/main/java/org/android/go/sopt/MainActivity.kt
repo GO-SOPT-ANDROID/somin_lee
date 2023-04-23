@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private val sf = SearchFragment()
     private val gf = GalleryFragment()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater) // 액티비티에서 사용할 바인딩 클래스의 객체화
