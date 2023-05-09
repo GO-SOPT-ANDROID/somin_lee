@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentContainerViewSearch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivGoAndroid"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="150dp"
+        android:contentDescription="@string/iv_go_android_description"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sopt_android" />
+
+    <TextView
+        android:id="@+id/resultNickname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/notosans_medium"
+        android:gravity="center"
+        android:text="@string/nickname"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivGoAndroid" />
+
+    <TextView
+        android:id="@+id/resultTmi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/notosans_light"
+        android:gravity="center"
+        android:text="@string/intro"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resultNickname" />
+
+    <Button
+        android:id="@+id/btLogout"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="40dp"
+        android:padding="0dp"
+        android:text="@string/logout"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:fontFamily="@font/notosans_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

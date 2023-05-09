@@ -9,14 +9,12 @@
         android:id="@+id/tvHeader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="15dp"
+        android:paddingVertical="15dp"
         android:gravity="center"
         android:text="@string/test_text"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

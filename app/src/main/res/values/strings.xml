@@ -19,4 +19,7 @@
     <string name="tv_search_fragment_test">search fragment\n등장!</string>
     <string name="tv_gallery_fragment_test">gallery fragment \n등장!</string>
     <string name="test_text">test text</string>
+    <string name="mypage">마이페이지</string>
+    <string name="logout">로그아웃</string>
+    <string name="pager_item_image">pager item image</string>
 </resources>
