@@ -25,7 +25,7 @@ class IntroduceActivity : AppCompatActivity() {
             }
         }
         val userIntro = "${userData?.nickname}의 한 마디"
-        val introMessage = "${userData?.tmi}"
+        val introMessage = "${userData?.intro}"
         resultNickname.text = userIntro
         resultTmi.text = introMessage
     }

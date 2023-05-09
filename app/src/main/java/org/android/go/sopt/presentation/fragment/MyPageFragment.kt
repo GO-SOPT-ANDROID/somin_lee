@@ -1,15 +1,20 @@
 package org.android.go.sopt.presentation.fragment
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.android.go.sopt.databinding.FragmentMyPageBinding
-import org.android.go.sopt.model.UserData
+import org.android.go.sopt.presentation.login.LoginActivity
 
 
 class MyPageFragment : Fragment() {
+
+
     private var _binding: FragmentMyPageBinding? = null
     private val binding: FragmentMyPageBinding
         get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" }
@@ -26,13 +31,7 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // 대부분의 로직은 여기에 구현합니다.
-        val loginData = arguments?.getParcelable<UserData>("user_data")
-        if (loginData != null){
-            val userIntro = "${loginData.nickname}의 한 마디"
-            val introMessage = "${loginData.tmi}"
-            binding.resultNickname.text = userIntro
-            binding.resultTmi.text = introMessage
-        }
+        initFragment()
     }
 
     override fun onDestroyView() {
@@ -40,4 +39,29 @@ class MyPageFragment : Fragment() {
         _binding = null
     }
 
+    private fun initFragment() {
+        // 자동 로그인
+        val autoLogin = requireContext().getSharedPreferences("AutoLogin", Context.MODE_PRIVATE) //해당 데이터는 해당 앱에서만 사용할 수 있다
+        val userNickname = "${autoLogin.getString("KEY_NICKNAME", null)}의 한 마디"
+        val introMessage = autoLogin.getString("KEY_INTRO", null)
+            binding.resultNickname.text = userNickname
+            binding.resultTmi.text = introMessage
+
+        _binding?.btLogout?.setOnClickListener {
+            logout(autoLogin)
+        }
+    }
+
+    //    로그아웃 시 호출할 메소드
+    private fun logout(autoLogin : SharedPreferences) {
+        val autoLoginEdit = autoLogin.edit()
+        autoLoginEdit.remove("KEY_ID")
+        autoLoginEdit.remove("KEY_PW")
+        autoLoginEdit.remove("KEY_NICKNAME")
+        autoLoginEdit.remove("KEY_INTRO")
+        autoLoginEdit.apply()
+        val intent = Intent(requireContext(), LoginActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
+    }
 }

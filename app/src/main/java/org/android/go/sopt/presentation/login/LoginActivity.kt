@@ -1,6 +1,7 @@
 package org.android.go.sopt.presentation.login
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -9,22 +10,23 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import org.android.go.sopt.presentation.home.MainActivity
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.extension.snackbarShort
 import org.android.go.sopt.model.UserData
+import org.android.go.sopt.presentation.home.MainActivity
 import org.android.go.sopt.presentation.home.SignUpActivity
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding //바인딩 객체 선언 (자동생성됨)
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
+
     var userData: UserData? = null
     private var inputId: String? = null
     private var inputPw: String? = null
 
     // 화면 터치 시 키보드 내리기
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean { // 얘 따로 빼고 싶어
-//        hideKeyboard()
         val imm: InputMethodManager? = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         return super.dispatchTouchEvent(ev)
@@ -54,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         btLogin.setOnClickListener() {
-            noSeverLogin()
+            login()
         }
         btSignUp.setOnClickListener() {
             signUp()
@@ -62,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     /**로그인 버튼 유저 정보가 없으면 회원 가입 스낵바, 입력 값이 없으면 입력 스낵바, 값이 다르면 재입력 스낵바, 같으면 Introduce Activity로 이동*/
-    private fun noSeverLogin() = with(binding) {
+    private fun login() = with(binding) {
         inputId = editId.text.toString()
         inputPw = editPw.text.toString()
         when {
@@ -71,6 +73,8 @@ class LoginActivity : AppCompatActivity() {
             }
             else -> {
                 root.snackbarShort("로그인 합니다")
+                saveData(userData)
+
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 intent.putExtra("user_data", userData)
                 setResult(RESULT_OK, intent)
@@ -79,6 +83,17 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun saveData(userData: UserData?) {
+        val autoLogin = getSharedPreferences("AutoLogin", Context.MODE_PRIVATE)
+        val autoLoginEdit = autoLogin.edit()
+        autoLoginEdit.putString("KEY_ID", userData?.id)
+        autoLoginEdit.putString("KEY_PW", userData?.pw)
+        autoLoginEdit.putString("KEY_NICKNAME", userData?.nickname)
+        autoLoginEdit.putString("KEY_INTRO", userData?.intro)
+        autoLoginEdit.apply()
+    }
+
     private fun signUp() {
         signUpLauncher.launch(Intent(this, SignUpActivity::class.java))
     }
