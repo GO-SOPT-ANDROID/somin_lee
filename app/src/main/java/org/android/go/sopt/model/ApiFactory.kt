@@ -9,6 +9,7 @@ object ApiFactory {
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("http://52.78.152.187:8080/")
+//            .baseUrl("https://reqres.in/api/users?page=2")
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }

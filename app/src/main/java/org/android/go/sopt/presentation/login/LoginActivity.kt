@@ -1,27 +1,27 @@
 package org.android.go.sopt.presentation.login
 
-
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import org.android.go.sopt.databinding.ActivityLoginBinding
-import org.android.go.sopt.extension.snackbarShort
-import org.android.go.sopt.model.UserData
+import org.android.go.sopt.extension.makeSnackbar
+import org.android.go.sopt.extension.makeToastMessage
+import org.android.go.sopt.model.*
 import org.android.go.sopt.presentation.home.MainActivity
 import org.android.go.sopt.presentation.home.SignUpActivity
-
+import retrofit2.Call
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding //바인딩 객체 선언 (자동생성됨)
     private lateinit var signUpLauncher: ActivityResultLauncher<Intent>
 
-    var userData: UserData? = null
+    private var userData: UserData? = null
     private var inputId: String? = null
     private var inputPw: String? = null
 
@@ -35,66 +35,121 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater) // 액티비티에서 사용할 바인딩 클래스의 객체화
-        setContentView(binding.root) // getRoot 메서드로 레이아웃 최상단 뷰를 액티비티에 표시 합니다
+
         initView()
     }
 
     private fun initView() = with(binding) {
-        signUpLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == RESULT_OK) {
-                    userData = when {
-                        (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) -> {
-                            result.data?.getParcelableExtra("user_data", UserData::class.java)
-                        }
-                        else -> {
-                            result.data?.getParcelableExtra<UserData>("user_data")
-                        }
-                    }
-                } else {
-                    root.snackbarShort("회원 정보가 없습니다")
-                }
-            }
+        setContentView(root) // getRoot 메서드로 레이아웃 최상단 뷰를 액티비티에 표시 합니다
+//        signUpLauncher =
+//            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//                if (result.resultCode == RESULT_OK) {
+//                    userData = when {
+//                        (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) -> {
+//                            result.data?.getParcelableExtra("user_data", UserData::class.java)
+//                        }
+//                        else -> {
+//                            result.data?.getParcelableExtra<UserData>("user_data")
+//                        }
+//                    }
+//                } else {
+//                    root.makeSnackbar("회원 정보가 없습니다")
+//                }
+//            }
         btLogin.setOnClickListener() {
-            login()
+            loginByServer()
         }
-        btSignUp.setOnClickListener() {
+        btMoveSignUp.setOnClickListener() {
             signUp()
         }
     }
 
-    /**로그인 버튼 유저 정보가 없으면 회원 가입 스낵바, 입력 값이 없으면 입력 스낵바, 값이 다르면 재입력 스낵바, 같으면 Introduce Activity로 이동*/
-    private fun login() = with(binding) {
-        inputId = editId.text.toString()
-        inputPw = editPw.text.toString()
-        when {
-            (inputId != userData?.id || inputPw != userData?.pw) -> {
-                root.snackbarShort("아이디와 비밀번호를 확인해주세요.")
-            }
-            else -> {
-                root.snackbarShort("로그인 합니다")
-                saveData(userData)
+    private fun loginByServer() = with(binding) {
+        val loginService = ServicePool.signUpService
 
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                intent.putExtra("user_data", userData)
-                setResult(RESULT_OK, intent)
-                finish()
-                startActivity(intent)
+        loginService.login(with(binding) {
+            RequestSignInDto(
+                editLoginId.text.toString(),
+                editLoginPw.text.toString()
+            )
+        }).enqueue(object : retrofit2.Callback<ResponseSignInDto> {
+            override fun onResponse(
+                // onResponse : 서버 응답이 성공적으로 도착했을 때 호출
+                call: Call<ResponseSignInDto>,
+                response: Response<ResponseSignInDto>,
+            ) {
+                if (response.body()?.status == 200) {
+                    makeToastMessage("${editLoginId.text}님, 환영합니다.")
+                    val loginData = UserData(
+                        response.body()?.data?.id,
+                        response.body()?.data?.name,
+                        response.body()?.data?.skill,
+                    )
+                    moveHome(loginData)
+                } else if (response.body()?.status == 400) {
+                    response.body()?.message?.let { makeToastMessage(it) } ?: "입력값 오류"
+                } else {
+                    // 실패한 응답
+//                    makeToastMessage("${response.body()?.message}")
+                    response.body()?.message?.let { makeToastMessage(it) } ?: "서버통신 실패(40X)"
+                }
             }
-        }
+
+            override fun onFailure(call: Call<ResponseSignInDto>, t: Throwable) {
+                // 통신 실패 시 예외 객체(Throwable)에서 실패 원인을 가져와 처리
+                Log.d("로그인 실패", "${t.message}")
+                t.message?.let { binding.root.makeSnackbar(it) } ?: "서버통신 실패(응답값 X)"
+            }
+        })
     }
+    private fun moveHome(loginData:UserData) {
+        saveData(loginData)
+        val intent=Intent(this@LoginActivity, MainActivity::class.java)
+//        =with(binding)
+//        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//        intent.putExtra("user_data", userData)
+//        setResult(RESULT_OK, intent)
+//        startActivity(intent)
+        Log.d("왜!","이동!")
+        finish()
+        startActivity(intent)
+        Log.d("왜 안 넘어가?","모르겠어")
+    }
+
+
+    /**로그인 버튼 유저 정보가 없으면 회원 가입 스낵바, 입력 값이 없으면 입력 스낵바, 값이 다르면 재입력 스낵바, 같으면 Introduce Activity로 이동*/
+//    private fun login() = with(binding) {
+//        inputId = editLoginId.text.toString()
+//        inputPw = editLoginPw.text.toString()
+//        when {
+//            (inputId != userData?.id || inputPw != userData?.pw) -> {
+//                root.makeSnackbar("아이디와 비밀번호를 확인해주세요.")
+//            }
+//            else -> {
+//                root.makeSnackbar("로그인 합니다")
+//                saveData(userData)
+//
+//                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//                intent.putExtra("user_data", userData)
+//                setResult(RESULT_OK, intent)
+//                finish()
+//                startActivity(intent)
+//            }
+//        }
+//    }
 
     private fun saveData(userData: UserData?) {
         val autoLogin = getSharedPreferences("AutoLogin", Context.MODE_PRIVATE)
         val autoLoginEdit = autoLogin.edit()
         autoLoginEdit.putString("KEY_ID", userData?.id)
-        autoLoginEdit.putString("KEY_PW", userData?.pw)
+//        autoLoginEdit.putString("KEY_PW", userData?.pw)
         autoLoginEdit.putString("KEY_NICKNAME", userData?.nickname)
         autoLoginEdit.putString("KEY_INTRO", userData?.intro)
         autoLoginEdit.apply()
     }
 
     private fun signUp() {
-        signUpLauncher.launch(Intent(this, SignUpActivity::class.java))
+        startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
+//        signUpLauncher.launch(Intent(this, SignUpActivity::class.java))
     }
 }

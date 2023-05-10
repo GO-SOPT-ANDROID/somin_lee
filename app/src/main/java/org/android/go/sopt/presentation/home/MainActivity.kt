@@ -9,18 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityMainBinding
-import org.android.go.sopt.presentation.fragment.GalleryFragment
-import org.android.go.sopt.presentation.fragment.HomeFragment
-import org.android.go.sopt.presentation.fragment.MyPageFragment
-import org.android.go.sopt.presentation.fragment.SearchFragment
+import org.android.go.sopt.presentation.fragment.*
 import org.android.go.sopt.presentation.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val currentFragment = supportFragmentManager.findFragmentById(R.id.fcvMain)
 
-    private val hf = HomeFragment()
     private val sf = SearchFragment()
+    private val uf = UserFragment()
+    private val hf = HomeFragment()
     private val gf = GalleryFragment()
     private val mf = MyPageFragment()
 
@@ -32,13 +30,11 @@ class MainActivity : AppCompatActivity() {
         // 자동 로그인
         val autoLogin = getSharedPreferences("AutoLogin", Context.MODE_PRIVATE) //해당 데이터는 해당 앱에서만 사용할 수 있다
         val userId = autoLogin.getString("KEY_ID", null)
-        val userPw = autoLogin.getString("KEY_PW", null)
-        println("안녕 $userId, $userPw")
 
         // 로그인 정보를 가져옴
         getUserData()
 
-        if (!userId.isNullOrBlank() && !userPw.isNullOrBlank()) {
+        if (!userId.isNullOrBlank()) {
             // 로그인 로직을 실행하거나 홈 화면으로 이동하는 등의 동작을 수행합니다.
         initView()
         } else {
@@ -62,11 +58,14 @@ class MainActivity : AppCompatActivity() {
         // 네비게이션 바 클릭시 fragment 이동
         binding.homeCustomBottom.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
-                R.id.menuHome -> {
-                    hf
-                }
                 R.id.menuSearch -> {
                     sf
+                }
+                R.id.menuUser -> {
+                    uf
+                }
+                R.id.menuHome -> {
+                    hf
                 }
                 R.id.menuGallery -> {
                     gf

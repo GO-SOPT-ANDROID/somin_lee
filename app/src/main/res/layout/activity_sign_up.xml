@@ -21,7 +21,7 @@
         />
 
     <TextView
-        android:id="@+id/tvId"
+        android:id="@+id/tvSignupId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/id"
@@ -35,13 +35,13 @@
         />
 
     <EditText
-        android:id="@+id/editId"
+        android:id="@+id/editSignupId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/edit_id_hint"
         android:textColorHint="#9C9C9C"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/tvId"
+        app:layout_constraintTop_toBottomOf="@id/tvSignupId"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         android:importantForAutofill="no"
@@ -50,7 +50,7 @@
         />
 
     <TextView
-        android:id="@+id/tvPw"
+        android:id="@+id/tvSignupPw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pw"
@@ -59,18 +59,18 @@
         android:textStyle="bold"
         android:textColor="#757575"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/editId"
+        app:layout_constraintTop_toBottomOf="@id/editSignupId"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         />
 
     <EditText
-        android:id="@+id/editPw"
+        android:id="@+id/editSignupPw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/edit_pw_hint"
         android:textColorHint="#9C9C9C"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/tvPw"
+        app:layout_constraintTop_toBottomOf="@id/tvSignupPw"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         android:inputType="textPassword"
@@ -79,7 +79,7 @@
 
 
     <TextView
-        android:id="@+id/tvNickname"
+        android:id="@+id/tvSignupNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nickname"
@@ -88,24 +88,24 @@
         android:textStyle="bold"
         android:textColor="#757575"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/editPw"
+        app:layout_constraintTop_toBottomOf="@id/editSignupPw"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         />
 
     <EditText
-        android:id="@+id/editNickname"
+        android:id="@+id/editSignupNickname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/edit_nickname_hint"
         android:textColorHint="#9C9C9C"
         android:layout_marginTop="10dp"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/tvNickname"
+        app:layout_constraintTop_toBottomOf="@id/tvSignupNickname"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"/>
 
     <TextView
-        android:id="@+id/tvIntroduce"
+        android:id="@+id/tvSignupIntroduce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/intro"
@@ -114,19 +114,19 @@
         android:textStyle="bold"
         android:textColor="#757575"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/editNickname"
+        app:layout_constraintTop_toBottomOf="@id/editSignupNickname"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         />
 
     <EditText
-        android:id="@+id/editIntroduce"
+        android:id="@+id/editSignupIntroduce"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/edit_intro_hint"
         android:textColorHint="#9C9C9C"
         android:layout_marginTop="10dp"
         android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/tvIntroduce"
+        app:layout_constraintTop_toBottomOf="@id/tvSignupIntroduce"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"/>
 
@@ -138,7 +138,7 @@
         android:layout_marginTop="40dp"
         android:text="@string/sign_up_done"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/editIntroduce"
+        app:layout_constraintTop_toBottomOf="@id/editSignupIntroduce"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         />

@@ -9,4 +9,9 @@ interface SignUpService {
     fun signUp(
         @Body request: RequestSignUpDto,
     ): Call<ResponseSignUpDto>
+
+    @POST("sign-in")
+    fun login(
+        @Body request: RequestSignInDto,
+    ): Call<ResponseSignInDto>
 }
