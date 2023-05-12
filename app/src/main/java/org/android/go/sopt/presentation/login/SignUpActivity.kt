@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.home
+package org.android.go.sopt.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,6 @@ import org.android.go.sopt.extension.makeToastMessage
 import org.android.go.sopt.model.RequestSignUpDto
 import org.android.go.sopt.model.ResponseSignUpDto
 import org.android.go.sopt.model.ServicePool
-import org.android.go.sopt.model.UserData
-import org.android.go.sopt.presentation.login.LoginActivity
 import retrofit2.Call
 import retrofit2.Response
 
@@ -69,7 +67,6 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
-
     /**서버통신 로직*/
     private fun completeSignUp() { //회원가입에 필요한 정보 입력
         val signUpService =
@@ -98,7 +95,6 @@ class SignUpActivity : AppCompatActivity() {
                     response.body()?.message?.let { makeToastMessage(it) } ?: "서버통신 실패(40X)"
                 }
             }
-
             override fun onFailure(call: Call<ResponseSignUpDto>, t: Throwable) {
                 // 통신 실패 시 예외 객체(Throwable)에서 실패 원인을 가져와 처리
                 t.message?.let { binding.root.makeSnackbar(it) } ?: "서버통신 실패(응답값 X)"

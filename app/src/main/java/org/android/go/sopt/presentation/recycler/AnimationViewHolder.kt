@@ -7,7 +7,7 @@ import org.android.go.sopt.model.RecycleData
 class AnimationViewHolder(private val binding : ItemAnimationBinding): RecyclerView.ViewHolder(binding.root) {
     fun onBind(item: RecycleData){
         binding.ivAnimation.setImageResource(item.imgId)
-        binding.tvName.text = item.name
-        binding.tvDetail.text = item.detail
+        binding.tvAnimationName.text = item.name
+        binding.tvAnimationDetail.text = item.detail
     }
 }

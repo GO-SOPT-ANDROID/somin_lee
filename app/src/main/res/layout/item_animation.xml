@@ -8,7 +8,7 @@
     android:paddingVertical="7.5dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv"
+        android:id="@+id/cvAnimation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
@@ -28,18 +28,18 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvAnimationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginStart="15dp"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/cv"
+        app:layout_constraintStart_toEndOf="@id/cvAnimation"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="photo name"/>
 
     <TextView
-        android:id="@+id/tvDetail"
+        android:id="@+id/tvAnimationDetail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -50,7 +50,7 @@
         android:ellipsize="end"
         android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
-        app:layout_constraintStart_toEndOf="@id/cv"
+        app:layout_constraintTop_toBottomOf="@id/tvAnimationName"
+        app:layout_constraintStart_toEndOf="@id/cvAnimation"
         tools:text="detail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

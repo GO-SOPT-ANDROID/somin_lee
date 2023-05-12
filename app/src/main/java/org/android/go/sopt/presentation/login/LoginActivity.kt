@@ -12,7 +12,6 @@ import org.android.go.sopt.extension.makeSnackbar
 import org.android.go.sopt.extension.makeToastMessage
 import org.android.go.sopt.model.*
 import org.android.go.sopt.presentation.home.MainActivity
-import org.android.go.sopt.presentation.home.SignUpActivity
 import retrofit2.Call
 import retrofit2.Response
 
