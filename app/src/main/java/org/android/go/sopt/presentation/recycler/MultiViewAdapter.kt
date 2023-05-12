@@ -13,7 +13,6 @@ class MultiViewAdapter(var itemList: List<RecycleData>) :
 
     //ViewHolder 구분을 위한 정수값
     val HEADER = 0
-    val ITEM = 1
 
     /**ViewHolder에 들어갈 View를 만들어주는 함수 (전체 리사이클러 뷰에 대한 내용)*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -27,15 +26,6 @@ class MultiViewAdapter(var itemList: List<RecycleData>) :
                     )
                 )
             }
-//            SOM -> {
-//                SomViewHolder(
-//                    ItemGodokSomBinding.inflate(
-//                        LayoutInflater.from(parent.context),
-//                        parent,
-//                        false
-//                    )
-//                )
-//            } //질문 => 분기를 3개로 하면 else문을 어떻게 처리해야 좋을지 모르겠다 !
             else -> {
                 AnimationViewHolder(
                     ItemAnimationBinding.inflate(

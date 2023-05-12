@@ -65,4 +65,7 @@ dependencies {
     // define any required OkHttp artifacts without version (BOM을 위에 명시했으니, 밑의 버전들은 BOM에 맞게 적용됩니다.)
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
+
+    // Url to Img 라이브러리
+    implementation("io.coil-kt:coil:0.10.0")
 }

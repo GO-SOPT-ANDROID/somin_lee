@@ -8,16 +8,18 @@ data class ResponseListUserDto(
     @SerialName("page")
     val page: Int,
     @SerialName("per_page")
-    val per_page: String,
+    val per_page: Int,
     @SerialName("total")
-    val total: String,
+    val total: Int,
     @SerialName("total_pages")
-    val total_pages: String,
+    val total_pages: Int,
     @SerialName("data")
-    val data: ListUserData
-) {
+    val data: List<UserServerData>,
+    @SerialName("support")
+    val support: UserSupport
+    ) {
     @Serializable
-    data class ListUserData(
+    data class UserServerData(
         @SerialName("id")
         val id: String,
         @SerialName("email")
@@ -27,6 +29,13 @@ data class ResponseListUserDto(
         @SerialName("last_name")
         val last_name: String,
         @SerialName("avatar")
-        val avatar: String,
+        val avatar: String
+    )
+    @Serializable
+    data class UserSupport(
+        @SerialName("url")
+        val url:String,
+        @SerialName("text")
+        val text: String
     )
 }

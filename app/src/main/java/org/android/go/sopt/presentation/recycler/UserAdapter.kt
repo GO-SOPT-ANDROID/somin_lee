@@ -1,17 +1,15 @@
 package org.android.go.sopt.presentation
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.databinding.ItemUserBinding
-import org.android.go.sopt.model.RecycleData
+import org.android.go.sopt.model.UserData
 import org.android.go.sopt.presentation.recycler.UserViewHolder
 
 /**single viewHolder용 Adapter*/
-class UserAdapter(context: Context) : RecyclerView.Adapter<UserViewHolder>() {
-//    private val inflater by lazy { LayoutInflater.from(context) }
-    private var itemList: List<RecycleData> = emptyList()
+class UserAdapter() : RecyclerView.Adapter<UserViewHolder>() {
+    private var itemList: List<UserData> = emptyList()
 
     //아래에 세가지 필수 매서드 자동 생성
     /**ViewHolder에 들어갈 View를 만들어주는 함수 (전체 리사이클러 뷰에 대한 내용)*/
@@ -30,7 +28,7 @@ class UserAdapter(context: Context) : RecyclerView.Adapter<UserViewHolder>() {
     /**데이터 리스트의 아이템 갯수를 반환하는 함수*/
     override fun getItemCount() = itemList.size
 
-    fun setUserList(userList: List<RecycleData>) {
+    fun setUserList(userList: List<UserData>) {
         this.itemList = userList.toList()
         notifyDataSetChanged()
     }

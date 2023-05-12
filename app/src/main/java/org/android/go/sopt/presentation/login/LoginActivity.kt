@@ -46,8 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginService.login(with(binding) {
             RequestSignInDto(
-                editLoginId.text.toString(),
-                editLoginPw.text.toString()
+                editLoginId.text.toString(), editLoginPw.text.toString()
             )
         }).enqueue(object : retrofit2.Callback<ResponseSignInDto> {
             override fun onResponse(
@@ -57,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
             ) {
                 if (response.body()?.status == 200) {
                     makeToastMessage("${editLoginId.text}님, 환영합니다.")
-                    val loginData = UserData(
+                    val loginData = LoginUserData(
                         response.body()?.data?.id,
                         response.body()?.data?.name,
                         response.body()?.data?.skill,
@@ -77,9 +76,10 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
-    private fun moveHome(loginData:UserData) {
+
+    private fun moveHome(loginData: LoginUserData) {
         saveData(loginData)
-        val intent=Intent(this@LoginActivity, MainActivity::class.java)
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
         finish()
         startActivity(intent)
     }
@@ -87,12 +87,12 @@ class LoginActivity : AppCompatActivity() {
 
     /**로그인 버튼 유저 정보가 없으면 회원 가입 스낵바, 입력 값이 없으면 입력 스낵바, 값이 다르면 재입력 스낵바, 같으면 Introduce Activity로 이동*/
 
-    private fun saveData(userData: UserData?) {
+    private fun saveData(loginUserData: LoginUserData?) {
         val autoLogin = getSharedPreferences("AutoLogin", Context.MODE_PRIVATE)
         val autoLoginEdit = autoLogin.edit()
-        autoLoginEdit.putString("KEY_ID", userData?.id)
-        autoLoginEdit.putString("KEY_NICKNAME", userData?.nickname)
-        autoLoginEdit.putString("KEY_INTRO", userData?.intro)
+        autoLoginEdit.putString("KEY_ID", loginUserData?.id)
+        autoLoginEdit.putString("KEY_NICKNAME", loginUserData?.nickname)
+        autoLoginEdit.putString("KEY_INTRO", loginUserData?.intro)
         autoLoginEdit.apply()
     }
 
