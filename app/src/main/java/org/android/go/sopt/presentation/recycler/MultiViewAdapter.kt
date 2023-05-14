@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.databinding.ItemAnimationBinding
 import org.android.go.sopt.databinding.ItemHeaderBinding
-import org.android.go.sopt.model.RecycleData
+import org.android.go.sopt.model.HomeViewModel.Companion.HEADER
+import org.android.go.sopt.model.RecycleAnimationData
 
 /**데이터 리스트(list<RecycleData>)를 뷰 리스트로 변환하는 클래스*/
-class MultiViewAdapter(var itemList: List<RecycleData>) :
+class MultiViewAdapter(var itemList: List<RecycleAnimationData>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //ViewHolder 구분을 위한 정수값
-    val HEADER = 0
 
     /**ViewHolder에 들어갈 View를 만들어주는 함수 (전체 리사이클러 뷰에 대한 내용)*/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

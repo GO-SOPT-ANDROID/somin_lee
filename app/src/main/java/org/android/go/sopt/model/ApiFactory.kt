@@ -3,19 +3,28 @@ package org.android.go.sopt.model
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import org.android.go.sopt.BuildConfig
+import org.android.go.sopt.model.signup.SignUpService
+import org.android.go.sopt.model.user.ReadUserService
 import retrofit2.Retrofit
 
 object ApiFactory {
-    val retrofit: Retrofit by lazy {
+    private const val SOPT_BASE_URL = BuildConfig.SOPT_BASE_URL
+    private const val REQRES_BASE_URL = BuildConfig.REQRES_BASE_URL
+
+    val signUpRetrofit: SignUpService by lazy {
         Retrofit.Builder()
-            .baseUrl("http://52.78.152.187:8080/")
+            .baseUrl(SOPT_BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
+            .create(SignUpService::class.java)
     }
 
-    inline fun <reified T> create(): T = retrofit.create<T>(T::class.java)
-}
-
-object ServicePool {
-    val signUpService = ApiFactory.create<SignUpService>()
+    val readUserRetrofit: ReadUserService by lazy {
+        Retrofit.Builder()
+            .baseUrl(REQRES_BASE_URL)
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(ReadUserService::class.java)
+    }
 }

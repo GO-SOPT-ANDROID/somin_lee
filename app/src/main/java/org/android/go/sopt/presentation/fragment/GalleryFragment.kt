@@ -26,13 +26,16 @@ class GalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // 대부분의 로직은 여기에 구현합니다.
-        binding.pagerGallery.adapter = ViewPagerAdapter().apply {
-            setItemList(listOf(R.drawable.som1, R.drawable.som2, R.drawable.som4, R.drawable.som6))
-        }
+        initViewPager()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun initViewPager()= with(binding){
+        pagerGallery.adapter = ViewPagerAdapter().apply {
+            setItemList(listOf(R.drawable.som1, R.drawable.som2, R.drawable.som4, R.drawable.som6))
+        }}
 }

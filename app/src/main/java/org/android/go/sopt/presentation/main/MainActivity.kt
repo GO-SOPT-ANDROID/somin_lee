@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.home
+package org.android.go.sopt.presentation.main
 
 import android.content.Context
 import android.content.Intent
@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val currentFragment = supportFragmentManager.findFragmentById(R.id.fcvMain)
 
-    private val sf = SearchFragment()
-    private val uf = UserFragment()
-    private val hf = HomeFragment()
-    private val gf = GalleryFragment()
-    private val mf = MyPageFragment()
+    private val homeFragment = HomeFragment()
+    private val searchFragment = SearchFragment()
+    private val userFragment = UserFragment()
+    private val galleryFragment = GalleryFragment()
+    private val myPageFragment = MyPageFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,27 +51,27 @@ class MainActivity : AppCompatActivity() {
 
         if (currentFragment == null) { // 스택이 비어있으면
             supportFragmentManager.beginTransaction()
-                .add(binding.fcvMain.id, hf) // fragmentContainerView add
+                .add(binding.fcvMain.id, homeFragment) // fragmentContainerView add
                 .commit()
         }
 
         // 네비게이션 바 클릭시 fragment 이동
         binding.homeCustomBottom.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
+                R.id.menuHome -> {
+                    homeFragment
+                }
                 R.id.menuSearch -> {
-                    sf
+                    searchFragment
                 }
                 R.id.menuUser -> {
-                    uf
-                }
-                R.id.menuHome -> {
-                    hf
+                    userFragment
                 }
                 R.id.menuGallery -> {
-                    gf
+                    galleryFragment
                 }
                 R.id.menuMyPage -> {
-                    mf
+                    myPageFragment
                 }
                 else -> { // 이렇게 하면 좋지 않음..
                     null
@@ -88,14 +88,14 @@ class MainActivity : AppCompatActivity() {
         // home '재'클릭시 스크롤 맨 위로 이동
         binding.homeCustomBottom.setOnItemReselectedListener { item ->
             if (item.itemId == R.id.menuHome) {
-                scrollToTop(hf.binding.rvHome)
+                scrollToTop(homeFragment.binding.rvHome)
             }
         }
     }
 
     /**로그인 한 유저의 정보를 받아 마이페이지 fragment로 전달*/
     private fun getUserData() = with(binding) {
-        mf.arguments = intent.extras
+        myPageFragment.arguments = intent.extras
     }
 
     private fun scrollToTop(recyclerView: RecyclerView) {

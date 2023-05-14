@@ -1,4 +1,4 @@
-package org.android.go.sopt.model
+package org.android.go.sopt.model.signup
 
 import retrofit2.Call
 import retrofit2.http.Body
@@ -11,7 +11,7 @@ interface SignUpService {
     ): Call<ResponseSignUpDto>
 
     @POST("sign-in")
-    fun login(
+    fun signIn(
         @Body request: RequestSignInDto,
     ): Call<ResponseSignInDto>
 }

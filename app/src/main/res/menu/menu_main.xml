@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menuHome"
+        android:checked="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"
+        />
+    <item
         android:id="@+id/menuSearch"
         android:icon="@drawable/ic_search"
         android:title="@string/search" />
@@ -9,12 +15,6 @@
         android:id="@+id/menuUser"
         android:icon="@drawable/ic_user"
         android:title="@string/user" />
-    <item
-        android:id="@+id/menuHome"
-        android:checked="true"
-        android:icon="@drawable/ic_home"
-        android:title="@string/home"
-        />
     <item
         android:id="@+id/menuGallery"
         android:icon="@drawable/ic_gallery"

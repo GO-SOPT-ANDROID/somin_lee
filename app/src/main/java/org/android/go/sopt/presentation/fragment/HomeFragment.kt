@@ -1,7 +1,6 @@
 package org.android.go.sopt.presentation.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,10 +25,7 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // 뷰가 생성된 후에 실행
         super.onViewCreated(view, savedInstanceState)
-//        val adapter = MyAdapter(viewModel.mockSomList)
-//        binding.rvHome.adapter = adapter
 
-        Log.d("어느 fragment?","Home입니당")
         val adapter = MultiViewAdapter(viewModel.mockAnimationList)
         binding.rvHome.adapter = adapter
     }

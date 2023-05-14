@@ -6,20 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import org.android.go.sopt.databinding.FragmentUserBinding
-import org.android.go.sopt.extension.makeSnackbar
-import org.android.go.sopt.model.ReadUserServicePool.readUserService
-import org.android.go.sopt.model.ResponseListUserDto
-import org.android.go.sopt.model.UserData
-import org.android.go.sopt.presentation.UserAdapter
+import org.android.go.sopt.model.ApiFactory.readUserRetrofit
+import org.android.go.sopt.model.user.ResponseUserDto
+import org.android.go.sopt.presentation.recycler.UserAdapter
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class UserFragment : Fragment() {
     private var _binding: FragmentUserBinding? = null
     private val binding: FragmentUserBinding
         get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -29,59 +28,30 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // 대부분의 로직은 여기에 구현합니다.
+
         val adapter = UserAdapter()
+        binding.rvUser.layoutManager = GridLayoutManager(context, 2)
         binding.rvUser.adapter = adapter
-        Log.d("어느 fragment?", "여긴 들어왔어")
-        readUserService.roadUsers(1).enqueue(object : retrofit2.Callback<ResponseListUserDto> {
+
+        readUserRetrofit.readUsers(1).enqueue(object : Callback<ResponseUserDto> {
             override fun onResponse(
-                call: Call<ResponseListUserDto>, response: Response<ResponseListUserDto>
+                call: Call<ResponseUserDto>,
+                response: Response<ResponseUserDto>
             ) {
                 if (response.isSuccessful) {
-                    Log.d("어느 fragment?", " 성공")
-                    adapter.setUserList(response.body()?.data?.map {
-                        return@map UserData(
-                            it.avatar, "${it.first_name} ${it.last_name}", it.email
-                        )
-                    } ?: emptyList())
+                    val responseUserDataList = response.body()?.data
+                    adapter.setUserList(responseUserDataList!!)
                 } else {
-                    binding.root.makeSnackbar("1.유저를 불러올 수 없습니다.")
-                    Log.d("어느 error fragment?", "1번")
+                    Log.e("User fragment 에러", response.toString())
                 }
             }
-            override fun onFailure(call: Call<ResponseListUserDto>, t: Throwable) {
-                Log.d("어느 error fragment?", "2번")
-                binding.root.makeSnackbar("2.유저를 불러올 수 없습니다.")
+            override fun onFailure(call: Call<ResponseUserDto>, t: Throwable) {
+                Log.e("User fragment 에러","서버 통신 에러")
             }
         })
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
-
-//    private fun roadUserData() {
-//        val adapter = UserAdapter(requireContext())
-//        binding.rvUser.adapter = adapter
-//        readUserService.roadUsers(1).enqueue(object : retrofit2.Callback<ResponseListUserDto> {
-//                override fun onResponse(
-//                    call: Call<ResponseListUserDto>, response: Response<ResponseListUserDto>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        adapter.setUserList(response.body()?.data?.map {
-//                            return@map UserData(
-//                                it.avatar, "${it.first_name} ${it.last_name}", it.email
-//                            )
-//                        } ?: emptyList())
-//                    } else {
-//                        context?.makeToastMessage("유저를 불러올 수 없습니다.")
-//                    }
-//                }
-//                override fun onFailure(call: Call<ResponseListUserDto>, t: Throwable) {
-//                    context?.makeToastMessage("유저를 불러올 수 없습니다.")
-//                }
-//            })
-//    }
-//}

@@ -47,7 +47,7 @@ class MyPageFragment : Fragment() {
             binding.resultNickname.text = userNickname
             binding.resultTmi.text = introMessage
 
-        _binding?.btLogout?.setOnClickListener {
+        binding.btLogout.setOnClickListener {
             logout(autoLogin)
         }
     }
@@ -55,10 +55,7 @@ class MyPageFragment : Fragment() {
     //    로그아웃 시 호출할 메소드
     private fun logout(autoLogin : SharedPreferences) {
         val autoLoginEdit = autoLogin.edit()
-        autoLoginEdit.remove("KEY_ID")
-        autoLoginEdit.remove("KEY_PW")
-        autoLoginEdit.remove("KEY_NICKNAME")
-        autoLoginEdit.remove("KEY_INTRO")
+        autoLoginEdit.clear()
         autoLoginEdit.apply()
         val intent = Intent(requireContext(), LoginActivity::class.java)
         startActivity(intent)
