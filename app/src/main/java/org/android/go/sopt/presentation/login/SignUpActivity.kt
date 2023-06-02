@@ -10,16 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import org.android.go.sopt.databinding.ActivitySignUpBinding
-import org.android.go.sopt.extension.makeSnackbar
-import org.android.go.sopt.extension.makeToastMessage
-import org.android.go.sopt.model.signup.LoginViewModel
-import org.android.go.sopt.util.ApiFactory.signUpRetrofit
-import org.android.go.sopt.model.signup.RequestSignUpDto
-import org.android.go.sopt.model.signup.ResponseSignUpDto
 import org.android.go.sopt.model.signup.SignUpViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding

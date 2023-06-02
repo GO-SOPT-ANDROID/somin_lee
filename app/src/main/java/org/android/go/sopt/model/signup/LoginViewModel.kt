@@ -11,7 +11,7 @@ import retrofit2.Response
 class LoginViewModel : ViewModel() { // 로그인 시 결과값을 받아옴
 
     private val _signInResult: MutableLiveData<ResponseSignInDto> = MutableLiveData()
-    val signInResult: MutableLiveData<ResponseSignInDto> get() = _signInResult
+    val signInResult: MutableLiveData<ResponseSignInDto> = _signInResult
 
     fun login(id: String, password: String) {
         signUpRetrofit.login(

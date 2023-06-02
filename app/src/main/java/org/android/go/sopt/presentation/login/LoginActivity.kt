@@ -3,6 +3,7 @@ package org.android.go.sopt.presentation.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
@@ -46,26 +47,22 @@ class LoginActivity : AppCompatActivity() {
             binding.editLoginId.text.toString(),
             binding.editLoginPw.text.toString()
         )
-
         viewModel.signInResult.observe(this@LoginActivity) { signInResult ->
-            when (signInResult.status) {
-                200 -> {
-                    moveToHome(
-                        signInResult.data
-                    )
-                    makeToastMessage(
-                        "%s로 로그인 합니다.".format(signInResult.data?.id)//signInResult.message
-                    )
-                }
-
-                400 -> {
-                    makeToastMessage("아이디와 비밀번호를 확인해주세요")
-                }
+            if (signInResult.status == 200) {
+                makeToastMessage(
+                    "%s로 로그인 합니다.".format(signInResult.data?.id)
+                )
+                loginSuccess(
+                    signInResult.data
+                )
+            } else {
+                Log.d("왜 안되니", signInResult.status.toString())
+                makeToastMessage(signInResult.message)
             }
         }
     }
 
-    private fun moveToHome(loginData: ResponseSignInDto.SignInData?) {
+    private fun loginSuccess(loginData: ResponseSignInDto.SignInData?) {
         saveData(loginData)
         finish()
         startActivity(
