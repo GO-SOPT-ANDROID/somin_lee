@@ -1,4 +1,4 @@
-package org.android.go.sopt.model
+package org.android.go.sopt.util
 
 import okhttp3.MultipartBody
 import retrofit2.Call

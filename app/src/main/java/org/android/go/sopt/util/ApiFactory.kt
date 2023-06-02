@@ -1,11 +1,10 @@
-package org.android.go.sopt.model
+package org.android.go.sopt.util
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import org.android.go.sopt.BuildConfig
 //import org.android.go.sopt.interceptor.SoptInterceptor
-import org.android.go.sopt.model.signup.SignUpService
 import org.android.go.sopt.model.user.ReadUserService
 import retrofit2.Retrofit
 
@@ -40,7 +39,7 @@ object ApiFactory {
     inline fun <reified T> create(): T = retrofitForImage.create<T>(T::class.java)
 
     object ServicePool {
-        val imageService = ApiFactory.create<ImageService>()
+        val imageService = create<ImageService>()
     }
 
 //    private val client by lazy {

@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.android.go.sopt.model.ApiFactory.ServicePool.imageService
+import org.android.go.sopt.util.ApiFactory.ServicePool.imageService
 import org.android.go.sopt.util.ContentUriRequestBody
 import retrofit2.Call
 import retrofit2.Callback

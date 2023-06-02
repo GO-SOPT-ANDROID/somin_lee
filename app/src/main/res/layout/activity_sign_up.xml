@@ -10,137 +10,171 @@
         android:id="@+id/tvSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
         android:text="@string/sign_up"
         android:textSize="30sp"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvSignupId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/id"
+        android:layout_marginTop="10dp"
         android:gravity="center"
+        android:text="@string/id"
+        android:textColor="#757575"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#757575"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/tvSignUp"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvSignUp" />
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editSignupId"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_id_hint"
-        android:textColorHint="#9C9C9C"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/tvSignupId"
-        app:layout_constraintStart_toStartOf="@id/tvSignUp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:maxLength="10"
-        />
+        app:layout_constraintStart_toStartOf="@id/tvSignUp"
+        app:layout_constraintTop_toBottomOf="@id/tvSignupId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editSignupIdText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="아이디를 입력하세요"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            app:counterMaxLength="10"
+            android:textColorHint="#9C9C9C" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/tvSignupPw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pw"
+        android:layout_marginTop="10dp"
         android:gravity="center"
+        android:text="@string/pw"
+        android:textColor="#757575"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#757575"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/editSignupId"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/editSignupId" />
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editSignupPw"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_pw_hint"
-        android:textColorHint="#9C9C9C"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/tvSignupPw"
-        app:layout_constraintStart_toStartOf="@id/tvSignUp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
-        android:inputType="textPassword"
-        android:maxLength="12"
-        android:autofillHints="false" /> <!--inputType을 Password로 설정하면 비번 가려줌!-->
+        app:layout_constraintStart_toStartOf="@id/tvSignUp"
+        app:layout_constraintTop_toBottomOf="@id/tvSignupPw">
 
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editSignupPwText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="비밀번호를 입력하세요"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            app:counterMaxLength="12"
+            android:textColorHint="#9C9C9C" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvSignupNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nickname"
+        android:layout_marginTop="10dp"
         android:gravity="center"
+        android:text="@string/nickname"
+        android:textColor="#757575"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#757575"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/editSignupPw"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/editSignupPw" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editSignupNickname"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_nickname_hint"
-        android:textColorHint="#9C9C9C"
-        android:layout_marginTop="10dp"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/tvSignupNickname"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
-        app:layout_constraintEnd_toEndOf="@id/tvSignUp"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSignupNickname">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editSignupNicknameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="닉네임을 입력하세요"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="12"
+            android:textColorHint="#9C9C9C" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvSignupIntroduce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/intro"
+        android:layout_marginTop="10dp"
         android:gravity="center"
+        android:text="@string/intro"
+        android:textColor="#757575"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#757575"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/editSignupNickname"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/editSignupNickname" />
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editSignupIntroduce"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_intro_hint"
-        android:textColorHint="#9C9C9C"
-        android:layout_marginTop="10dp"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/tvSignupIntroduce"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@id/tvSignUp"
         app:layout_constraintStart_toStartOf="@id/tvSignUp"
-        app:layout_constraintEnd_toEndOf="@id/tvSignUp"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSignupIntroduce">
 
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editSignupIntroduceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="소개를 입력하세요"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="12"
+            android:textColorHint="#9C9C9C" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btSignUpDone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:enabled="false"
         android:text="@string/sign_up_done"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/editSignupIntroduce"
-        app:layout_constraintStart_toStartOf="@id/tvSignUp"
         app:layout_constraintEnd_toEndOf="@id/tvSignUp"
-        />
+        app:layout_constraintStart_toStartOf="@id/tvSignUp"
+        app:layout_constraintTop_toBottomOf="@id/editSignupIntroduce" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

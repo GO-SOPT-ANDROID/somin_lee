@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sopt Practice</string>
     <string name="welcome_to_android">Welcome to Go Android!</string>
-    <string name="pw">PW</string>
+    <string name="pw">PASSWORD</string>
     <string name="edit_id_hint">아이디를 입력하세요.</string>
     <string name="edit_pw_hint">비밀번호를 입력하세요.</string>
     <string name="login">LOGIN</string>

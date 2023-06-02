@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import org.android.go.sopt.databinding.FragmentUserBinding
-import org.android.go.sopt.model.ApiFactory.readUserRetrofit
+import org.android.go.sopt.util.ApiFactory.readUserRetrofit
 import org.android.go.sopt.model.user.ResponseUserDto
 import org.android.go.sopt.presentation.recycler.UserAdapter
 import retrofit2.Call
