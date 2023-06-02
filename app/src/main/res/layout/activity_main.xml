@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.main.MainActivity">
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcvMain"
         android:layout_width="0dp"

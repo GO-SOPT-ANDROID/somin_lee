@@ -55,6 +55,7 @@ dependencies {
 
     // ViewModel 의존성 설정하기
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+
     // ViewModel 생성함수를 편하게 사용하고 싶다면?
     implementation "androidx.fragment:fragment-ktx:1.5.6"
     implementation "androidx.activity:activity-ktx:1.7.0"
@@ -73,4 +74,9 @@ dependencies {
 
     // Url to Img 라이브러리
     implementation("io.coil-kt:coil:0.10.0")
+
+    // okhttp Interceptor 인터셉터
+    implementation platform('com.squareup.okhttp3:okhttp-bom:4.10.0')
+    implementation 'com.squareup.okhttp3:okhttp'
+    implementation 'com.squareup.okhttp3:logging-interceptor'
 }

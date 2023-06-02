@@ -18,7 +18,12 @@ import retrofit2.Response
 class UserFragment : Fragment() {
     private var _binding: FragmentUserBinding? = null
     private val binding: FragmentUserBinding
-        get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" }
+        get() = requireNotNull(_binding) {
+            Log.d(
+                "UserFragment", "_binding이 null입니다"
+            )
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -35,8 +40,7 @@ class UserFragment : Fragment() {
 
         readUserRetrofit.readUsers(1).enqueue(object : Callback<ResponseUserDto> {
             override fun onResponse(
-                call: Call<ResponseUserDto>,
-                response: Response<ResponseUserDto>
+                call: Call<ResponseUserDto>, response: Response<ResponseUserDto>
             ) {
                 if (response.isSuccessful) {
                     val responseUserDataList = response.body()?.data
@@ -45,11 +49,13 @@ class UserFragment : Fragment() {
                     Log.e("User fragment 에러", response.toString())
                 }
             }
+
             override fun onFailure(call: Call<ResponseUserDto>, t: Throwable) {
-                Log.e("User fragment 에러","서버 통신 에러")
+                Log.e("User fragment 에러", "서버 통신 에러")
             }
         })
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
