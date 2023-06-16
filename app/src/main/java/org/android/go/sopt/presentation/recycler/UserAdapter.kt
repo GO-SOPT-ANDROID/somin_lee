@@ -26,8 +26,10 @@ class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
     /**데이터 리스트의 아이템 갯수를 반환하는 함수*/
     override fun getItemCount() = itemList.size
 
-    fun setUserList(userList: List<ResponseUserDto.Data>) {
-        this.itemList = userList.toList()
+    fun setUserList(userList: List<ResponseUserDto.Data>?) {
+        if (userList != null) {
+            this.itemList = userList.toList()
+        }
         notifyDataSetChanged()
     }
 }

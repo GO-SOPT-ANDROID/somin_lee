@@ -1,6 +1,7 @@
 package org.android.go.sopt.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,13 @@ import org.android.go.sopt.presentation.recycler.MultiViewAdapter
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
-    val binding get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" } //에러 메시지
+    val binding
+        get() = requireNotNull(_binding) {
+            Log.d(
+                "HomeFragment",
+                "_binding이 null입니다"
+            )
+        } //에러 메시지
     private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView( // 제일 처음 뷰가 생성될 때 실행
@@ -23,6 +30,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { // 뷰가 생성된 후에 실행
         super.onViewCreated(view, savedInstanceState)
 

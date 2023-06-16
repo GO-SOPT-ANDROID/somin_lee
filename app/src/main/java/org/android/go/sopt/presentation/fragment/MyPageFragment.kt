@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.android.go.sopt.databinding.FragmentMyPageBinding
+import org.android.go.sopt.extension.makeToastMessage
 import org.android.go.sopt.presentation.login.LoginActivity
 
 
@@ -57,6 +58,7 @@ class MyPageFragment : Fragment() {
         val autoLoginEdit = autoLogin.edit()
         autoLoginEdit.clear()
         autoLoginEdit.apply()
+        requireContext().makeToastMessage("로그아웃 합니다.")
         val intent = Intent(requireContext(), LoginActivity::class.java)
         startActivity(intent)
         requireActivity().finish()

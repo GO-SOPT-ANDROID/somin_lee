@@ -1,4 +1,5 @@
-package org.android.go.sopt.model
+package org.android.go.sopt.model.signup
+
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 

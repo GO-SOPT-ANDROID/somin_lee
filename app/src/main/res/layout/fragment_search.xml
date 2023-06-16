@@ -5,14 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linear_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_search_fragment_test"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_gallery_first"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/iv_gallery_second"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="30dp" />
+
+        <ImageView
+            android:id="@+id/iv_gallery_third"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:text="이미지 가져오기"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/linear_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
